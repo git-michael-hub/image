@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Vision App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .upload-container {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-download {
+            background-color: #2ecc71;
+        }
+        .btn-download:hover {
+            background-color: #27ae60;
+        }
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+        .flash-message {
+            padding: 10px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        /* Tab styles */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .color-selector {
+            margin-bottom: 20px;
+        }
+        .color-option {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #ddd;
+        }
+        .color-option.selected {
+            border-color: #3498db;
+            transform: scale(1.1);
+        }
+        .red { background-color: #e74c3c; }
+        .blue { background-color: #3498db; }
+        .green { background-color: #2ecc71; }
+        /* Styles for object censoring options */
+        .censor-options {
+            margin-bottom: 20px;
+            text-align: left;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .checkbox-group, .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .checkbox-item, .radio-item {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .checkbox-item label, .radio-item label {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            cursor: pointer;
+        }
+        .censor-options p {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        /* Styles for OCR options */
+        .ocr-options {
+            margin-bottom: 20px;
+            text-align: left;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .ocr-options p {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Computer Vision App</h1>
+        <p>Detect objects or create invisibility effects with computer vision</p>
+    </div>
+    
+    {% if get_flashed_messages() %}
+    <div class="flash-messages">
+        {% for message in get_flashed_messages() %}
+            <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="tabs">
+        <div class="tab active" onclick="openTab(event, 'object-detection')">Object Detection</div>
+        <div class="tab" onclick="openTab(event, 'invisibility-cloak')">Invisibility Cloak</div>
+        <div class="tab" onclick="openTab(event, 'object-censoring')">Object Censoring</div>
+        <div class="tab" onclick="openTab(event, 'text-recognition')">Text Recognition</div>
+    </div>
+    
+    <div id="object-detection" class="tab-content active">
+        <div class="upload-container">
+            <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                <p>Select an image file (PNG, JPG)</p>
+                <input type="file" name="file" accept=".png, .jpg, .jpeg">
+                <br>
+                <button type="submit" class="btn">Upload & Detect Objects</button>
+            </form>
+        </div>
+        
+        <div style="text-align: center;">
+            <p>Before using object detection, you need to download the model:</p>
+            <a href="{{ url_for('download_model') }}" class="btn btn-download">Download Object Detection Model</a>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <h3>How it works:</h3>
+            <ol>
+                <li>Download the object detection model (you only need to do this once)</li>
+                <li>Upload an image of your choice</li>
+                <li>The app will identify objects in the image and label them</li>
+                <li>View the results with bounding boxes around detected objects</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div id="invisibility-cloak" class="tab-content">
+        <div class="upload-container">
+            <form action="{{ url_for('invisibility_cloak') }}" method="post" enctype="multipart/form-data">
+                <p>Select an image file (PNG, JPG)</p>
+                <input type="file" name="file" accept=".png, .jpg, .jpeg">
+                <br>
+                <div class="color-selector">
+                    <p>Select the color to make invisible:</p>
+                    <div class="color-option red selected" onclick="selectColor(event, 'red')"></div>
+                    <div class="color-option blue" onclick="selectColor(event, 'blue')"></div>
+                    <div class="color-option green" onclick="selectColor(event, 'green')"></div>
+                    <input type="hidden" name="color" value="red" id="selected-color">
+                </div>
+                <button type="submit" class="btn">Upload & Create Invisibility Effect</button>
+            </form>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <h3>How the Invisibility Cloak works:</h3>
+            <ol>
+                <li>Upload an image of a person wearing clothing of the selected color</li>
+                <li>The app will detect the selected color and make it invisible</li>
+                <li>The color will be replaced with the background, creating a "Harry Potter" invisibility effect</li>
+                <li>For best results, use a solid colored object against a clean background</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div id="object-censoring" class="tab-content">
+        <div class="upload-container">
+            <form action="{{ url_for('censor_objects') }}" method="post" enctype="multipart/form-data">
+                <p>Select an image file (PNG, JPG)</p>
+                <input type="file" name="file" accept=".png, .jpg, .jpeg">
+                <br>
+                <div class="censor-options">
+                    <p>Select object types to censor:</p>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="censor-person" name="censor_classes" value="person" checked>
+                            <label for="censor-person">Person</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="censor-face" name="censor_classes" value="face">
+                            <label for="censor-face">Face (if detected)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="censor-car" name="censor_classes" value="car">
+                            <label for="censor-car">Car</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="censor-animal" name="censor_classes" value="animal">
+                            <label for="censor-animal">Animals</label>
+                        </div>
+                    </div>
+                    
+                    <p>Censoring method:</p>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="censor-blur" name="censor_method" value="blur" checked>
+                            <label for="censor-blur">Blur</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="censor-pixelate" name="censor_method" value="pixelate">
+                            <label for="censor-pixelate">Pixelate</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="censor-black" name="censor_method" value="black">
+                            <label for="censor-black">Black box</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Upload & Censor Objects</button>
+            </form>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <h3>How Object Censoring works:</h3>
+            <ol>
+                <li>Upload an image that might contain sensitive objects</li>
+                <li>Select the types of objects you want to censor</li>
+                <li>Choose your preferred censoring method</li>
+                <li>The app will detect and censor the selected object types</li>
+                <li>For best results, ensure objects are clearly visible in the image</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div id="text-recognition" class="tab-content">
+        <div class="upload-container">
+            <form action="{{ url_for('recognize_text_route') }}" method="post" enctype="multipart/form-data">
+                <p>Select an image file with text (PNG, JPG)</p>
+                <input type="file" name="file" accept=".png, .jpg, .jpeg">
+                <br>
+                <div class="ocr-options">
+                    <p>OCR Processing Options:</p>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="preprocess-image" name="preprocess" value="true" checked>
+                            <label for="preprocess-image">Preprocess image for better results</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="highlight-text" name="highlight" value="true" checked>
+                            <label for="highlight-text">Highlight detected text regions</label>
+                        </div>
+                    </div>
+                    
+                    <p>Language:</p>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="lang-eng" name="language" value="eng" checked>
+                            <label for="lang-eng">English</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="lang-multi" name="language" value="multi">
+                            <label for="lang-multi">Multiple languages</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Upload & Extract Text</button>
+            </form>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <h3>How Text Recognition works:</h3>
+            <ol>
+                <li>Upload an image containing text (document, sign, screenshot, etc.)</li>
+                <li>The app will process the image and identify text regions</li>
+                <li>Optical Character Recognition (OCR) extracts the text content</li>
+                <li>View both the highlighted text regions and the extracted text</li>
+                <li>For best results, use clear images with good lighting and contrast</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tabs
+            var tabs = document.getElementsByClassName("tab");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            
+            // Show the selected tab content and mark the button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        function selectColor(evt, color) {
+            // Remove selected class from all color options
+            var colorOptions = document.getElementsByClassName("color-option");
+            for (var i = 0; i < colorOptions.length; i++) {
+                colorOptions[i].classList.remove("selected");
+            }
+            
+            // Mark the selected color as active
+            evt.currentTarget.classList.add("selected");
+            
+            // Update the hidden input value
+            document.getElementById("selected-color").value = color;
+        }
+    </script>
+</body>
+</html> 

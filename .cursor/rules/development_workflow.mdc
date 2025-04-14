@@ -1,0 +1,46 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Development Workflow
+
+_Rules for Git workflow, code reviews, and environment management_
+
+## Git Workflow
+
+**ID**: git-workflow  
+**Severity**: warning  
+
+Standards for source control management
+
+- Use feature branches for all new development
+- Name branches using the pattern: `feature/`, `bugfix/`, `hotfix/`, `release/`
+- Require pull request reviews before merging
+- Squash commits when merging to main branch
+- Write descriptive commit messages with issue references
+
+## Code Review Process
+
+**ID**: code-reviews  
+**Severity**: error  
+
+Standards for reviewing code changes
+
+- All code must be reviewed by at least one other developer
+- Reviewers should check for adherence to standards and best practices
+- Address all review comments before merging
+- Use Cursor's collaborative features for real-time code reviews
+
+## Environment Management
+
+**ID**: environment-management  
+**Severity**: error  
+
+Standards for managing development environments
+
+- Use .env files for environment-specific configuration
+- Never commit sensitive information to version control
+- Document all environment variables in a template file
+- Use different environment configurations for development, testing, and production
+

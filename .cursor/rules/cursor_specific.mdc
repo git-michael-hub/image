@@ -1,0 +1,61 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor-Specific Features
+
+_Rules for leveraging Cursor IDE's unique features, including keyboard shortcuts, AI assistance, and collaboration_
+
+## Keyboard Shortcuts
+
+**ID**: keyboard-shortcuts  
+**Severity**: info  
+
+Essential Cursor keyboard shortcuts to use
+
+- Use `Cmd+Shift+P` (Mac) / `Ctrl+Shift+P` (Windows/Linux) for command palette
+- Use `Cmd+K` (Mac) / `Ctrl+K` (Windows/Linux) for quick file navigation
+- Use `F1` to show AI chat panel
+- Use `Cmd+I` (Mac) / `Ctrl+I` (Windows/Linux) for inline AI completion
+- Document custom shortcuts in project README
+
+## AI-Assisted Development
+
+**ID**: ai-assisted-development  
+**Severity**: info  
+
+Best practices for using Cursor's AI features
+
+- Use AI for generating boilerplate code
+- Verify and validate all AI-generated code
+- Use AI to explain complex code sections
+- Share effective prompts with team members
+- Always review AI-generated code for correctness
+
+## Collaborative Coding
+
+**ID**: collaborative-coding  
+**Severity**: info  
+
+Standards for collaborative development in Cursor
+
+- Use Cursor's collaborative editing for pair programming
+- Set clear goals for collaborative sessions
+- Use Cursor's collaborative features for real-time code reviews
+- Document decisions made during collaborative sessions
+- Share AI insights during review sessions
+
+## IDE Settings
+
+**ID**: ide-settings  
+**Severity**: warning  
+
+Cursor IDE configuration standards
+
+- Use consistent formatting settings across the team
+- Configure linters and formatters to run on save
+- Set up project-specific snippets for common patterns
+- Install required extensions: ESLint, Prettier, Python, Django
+- Document extension configuration in project README
+

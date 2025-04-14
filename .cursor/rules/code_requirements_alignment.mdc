@@ -1,0 +1,87 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Code Requirements Alignment
+
+_Rules to ensure all code implementations align with specifications in requirements documents_
+
+## Code Implementation Alignment
+
+**ID**: code-implementation-alignment  
+**Severity**: error  
+
+Code implementations must directly align with requirements specifications
+
+- All code functionality must be traceable to specific requirements
+- Code behavior must match the exact specifications in requirements
+- Implementation choices must follow architectural decisions in requirements
+- Performance characteristics must meet requirements specifications
+- Feature limits and constraints must reflect requirements
+
+## Algorithm Requirements Conformance
+
+**ID**: algorithm-requirements-conformance  
+**Severity**: error  
+
+Algorithms and business logic must implement requirements exactly
+
+- Implement algorithms as specified in requirements documentation
+- Business logic must follow rules defined in requirements
+- Calculations and data processing must match requirement specifications
+- Optimization approaches must be approved in requirements
+- Edge case handling must cover scenarios in requirements
+
+## Data Model Requirements Alignment
+
+**ID**: data-model-requirements-alignment  
+**Severity**: error  
+
+Data models and storage must align with requirements specifications
+
+- Database schemas must match data models in requirements
+- Entity relationships must follow specifications in requirements
+- Data types and constraints must be implemented as required
+- Storage strategies must comply with requirement specifications
+- Data lifecycle management must follow requirements
+
+## UI/UX Requirements Conformance
+
+**ID**: ui-ux-requirements-conformance  
+**Severity**: warning  
+
+User interfaces must conform to design requirements
+
+- UI components must match design specifications in requirements
+- User flows must follow patterns specified in requirements
+- Responsive behaviors must meet requirements specifications
+- Accessibility features must be implemented as required
+- UI text and messaging must follow content guidelines in requirements
+
+## Requirement Change Implementation
+
+**ID**: requirement-change-implementation  
+**Severity**: warning  
+
+Code changes due to requirement updates must be tracked
+
+- Updated requirements must be reflected in code implementations
+- Code changes must reference the specific requirement changes
+- Deprecated requirements must lead to removal or update of related code
+- Requirement version changes must be tracked in affected code
+- Impact analysis must be performed for requirement changes
+
+## System Integration Requirements
+
+**ID**: system-integration-requirements  
+**Severity**: error  
+
+Integration with external systems must follow requirements
+
+- Integration interfaces must match specifications in requirements
+- Communication protocols must be implemented as required
+- Data exchange formats must comply with requirements
+- Authentication and security measures must follow specifications
+- Error handling for integrations must meet requirements
+

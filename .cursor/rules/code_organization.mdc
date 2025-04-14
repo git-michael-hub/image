@@ -1,0 +1,63 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Code Organization Standards
+
+_Rules for organizing project structure, files, imports, and components_
+
+## Project Structure
+
+**ID**: project-structure  
+**Severity**: error  
+
+Follow consistent project structure patterns
+
+- Follow the Django project structure for backend code
+- Organize frontend React code into features, components, hooks, and utilities
+- Group TypeScript files by feature and functionality
+- Keep shared utilities in dedicated folders by functionality
+- Maintain consistent naming conventions across the codebase
+
+## File Naming Conventions
+
+**ID**: file-naming  
+**Severity**: error  
+
+Use consistent file naming patterns
+
+- Use snake_case for Python files
+- Use PascalCase for React components with `.tsx` extension
+- Use camelCase for TypeScript utility files with `.ts` extension
+- Use PascalCase for TypeScript interfaces and types with `.ts` extension (e.g., `UserTypes.ts`)
+- No `.js` or `.jsx` files allowed; all JavaScript code must use TypeScript extensions
+
+## Import Order
+
+**ID**: import-order  
+**Severity**: warning  
+
+Organize imports in a consistent manner
+
+- Standard library imports first
+- Third-party library imports second
+- Local application imports third
+- Type imports should be grouped with their related functionality
+- Separate import groups with a blank line
+- Sort imports alphabetically within each group
+
+## Component Organization
+
+**ID**: component-organization  
+**Severity**: warning  
+
+Structure React components consistently
+
+- Organize React components using atomic design principles
+- Keep component files under 300 lines of code
+- Extract complex logic into custom hooks
+- Co-locate component tests with component files
+- Define prop interfaces at the top of component files
+- Export types and interfaces needed by other components
+

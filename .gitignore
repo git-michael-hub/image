@@ -1,0 +1,48 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.env
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Flask stuff
+instance/
+.webassets-cache
+
+# Uploaded content
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+
+# Model files
+app/model/*
+!app/model/.gitkeep
+
+# MacOS
+.DS_Store
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Log files
+*.log
+
+# Database files
+*.db
+*.sqlite
+
+# Other
+.coverage
+htmlcov/
+.pytest_cache/ 

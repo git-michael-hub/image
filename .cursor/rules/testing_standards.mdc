@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Testing Standards
+
+_Rules for test coverage, organization, and workflow_
+
+## Test Coverage
+
+**ID**: test-coverage  
+**Severity**: error  
+
+Standards for code test coverage
+
+- Minimum 80% code coverage for business logic
+- 100% coverage for critical components
+- Write tests for all edge cases
+- Tests must pass before merging code
+
+## Test Organization
+
+**ID**: test-organization  
+**Severity**: warning  
+
+Standards for organizing tests
+
+- Use the Arrange-Act-Assert pattern for unit tests
+- Group related tests using describe blocks
+- Use descriptive test names that explain the expected behavior
+- Mock external dependencies in unit tests
+
+## Testing Workflow
+
+**ID**: testing-workflow  
+**Severity**: warning  
+
+Standards for the testing process
+
+- Run tests locally before pushing code
+- Integrate tests into CI/CD pipeline
+- Fix failing tests immediately
+- Use Cursor's testing tools to run and debug tests
+

@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Performance Optimization
+
+_Rules for query optimization, frontend performance, and resource management_
+
+## Query Optimization
+
+**ID**: query-optimization  
+**Severity**: warning  
+
+Standards for optimizing database queries
+
+- Use the Django Debug Toolbar to identify slow queries
+- Add appropriate indexes for frequently queried fields
+- Use select_related and prefetch_related to reduce query count
+- Implement query result caching for repetitive requests
+
+## Frontend Performance
+
+**ID**: frontend-performance  
+**Severity**: warning  
+
+Standards for optimizing frontend performance
+
+- Implement code splitting for large applications
+- Use lazy loading for images and non-critical components
+- Optimize bundle size using webpack bundle analyzer
+- Follow Next.js performance best practices
+
+## Resource Management
+
+**ID**: resource-management  
+**Severity**: error  
+
+Standards for managing system resources
+
+- Close database connections and file handles properly
+- Implement connection pooling for database access
+- Use streaming responses for large data transfers
+- Monitor memory usage during development
+

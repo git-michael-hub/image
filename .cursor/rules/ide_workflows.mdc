@@ -1,0 +1,73 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# IDE Workflows
+
+_Rules for standardized IDE workflows in Cursor, especially for test-driven development_
+
+## Test-First Workflow
+
+**ID**: test-first-workflow  
+**Severity**: error  
+
+Enforce a workflow where tests are written before implementation code
+
+- Create test files in the editor before implementation files
+- Run tests immediately after writing them to verify they fail correctly
+- Use Cursor's AI to propose implementation solutions only after tests are written
+- Toggle between test and implementation files frequently to maintain context
+
+## Code Proposal Validation
+
+**ID**: code-proposal-validation  
+**Severity**: warning  
+
+Standards for proposing and accepting code in Cursor
+
+- Use Cursor's AI to propose multiple possible implementations
+- Run tests against each proposed implementation
+- Only accept code that passes all tests
+- Request improvements from AI for failing implementations
+- Document the selected implementation and reason for selection
+
+## Continuous Testing
+
+**ID**: continuous-testing  
+**Severity**: warning  
+
+Configure Cursor to run tests continuously during development
+
+- Configure automatic test runs on file save
+- Set up test watchers for relevant directories
+- Display test results directly in the editor
+- Highlight failing tests with inline error messages
+- Use test results to guide further development
+
+## AI-Assisted Testing
+
+**ID**: ai-assisted-testing  
+**Severity**: info  
+
+Best practices for using Cursor's AI capabilities for testing
+
+- Use AI to suggest test cases for comprehensive coverage
+- Request edge case identification from AI
+- Use AI to analyze test quality and coverage
+- Ask AI to generate test documentation
+- Leverage AI to explain test failures and suggest fixes
+
+## Split Pane Workflow
+
+**ID**: split-pane-workflow  
+**Severity**: info  
+
+Configure Cursor's interface for efficient TDD
+
+- Use split panes to display tests and implementation side by side
+- Configure keyboard shortcuts for navigating between test and implementation
+- Set up dedicated terminal pane for continuous test running
+- Use vertical splits for wide screens, horizontal for smaller screens
+- Maintain consistent layout across all development sessions
+

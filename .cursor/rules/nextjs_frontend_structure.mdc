@@ -1,0 +1,304 @@
+---
+description: Rules for organizing Next.js projects with App Router architecture
+globs: 
+alwaysApply: true
+---
+
+# Next.js Frontend Structure
+
+_Rules for organizing Next.js projects with App Router architecture_
+
+## App Router Organization
+
+**ID**: app-router-organization  
+**Severity**: warning  
+
+The App Router is the core of a Next.js application, defining routes, layouts, and pages.
+
+- Use App Router (`app/` directory) for all routing
+- Each route segment should be a folder in the app directory
+- Use `page.tsx` file to make a route segment publicly accessible
+- Use `layout.tsx` for shared UI across multiple pages
+- Use `loading.tsx` for route segment loading states
+- Use `error.tsx` for error handling within route segments
+- Use `not-found.tsx` for custom 404 pages
+- Group related routes using route groups (`(group)/`) when they need to share a layout without affecting URL structure
+- Use parallel routes for complex page layouts with independent navigation slots
+- Use intercepting routes for features like modals that need to show content while keeping the current page visible
+
+## Component Organization
+
+**ID**: component-organization  
+**Severity**: warning  
+
+Components should be organized by function and reusability.
+
+- Place all reusable components in a `components/` directory
+- Organize UI components in `components/ui/` (Button, Card, etc.)
+- Organize layout components in `components/layout/` (Header, Footer, Sidebar)
+- Organize feature-specific components in `components/features/{feature-name}/`
+- Organize form components in `components/forms/`
+- Prefix client components with `'use client';` directive
+- Keep server components as the default (no directive needed)
+- Create index.ts barrel files for clean exports
+- Use component composition to build complex UI from simple components
+- Implement consistent prop interfaces for all components
+- Create specialized wrapper components for frequently reused patterns
+- Document component APIs with JSDoc comments
+
+## Authentication Flow
+
+**ID**: authentication-flow  
+**Severity**: error  
+
+Authentication should follow a clear and secure pattern across the application.
+
+- Use the Context API to manage authentication state application-wide
+- Implement token-based authentication with secure storage methods
+- Store tokens in httpOnly cookies or memory, avoid localStorage for sensitive data
+- Include auto-refresh logic for expired tokens
+- Display loading indicators during auth checks to prevent content flashing
+- Redirect unauthenticated users from protected routes to login
+- Redirect authenticated users from auth pages (login/register) to dashboard
+- Implement path-saving for redirecting users back to intended destinations post-login
+- Use server-side authentication verification for sensitive operations
+- Separate authentication logic from UI components in dedicated services
+- Include proper error handling for all authentication failures
+- Implement consistent logout functionality across the app
+- Support multiple authentication methods (email/password, OAuth, MFA)
+
+## Context and State Management
+
+**ID**: context-state-management  
+**Severity**: warning  
+
+Context and state management should be organized and easily accessible.
+
+- Place all context providers in a `contexts/` directory
+- Follow naming convention `{name}Context.tsx`
+- Export both the context and a custom hook (e.g., `useAuth`)
+- Group related state management in the appropriate context
+- Use React Context for app-wide state
+- Consider Zustand or Redux for complex state requirements
+- Nest context providers in a structured way, with the most global providers outermost
+- Keep context values normalized to minimize unnecessary renders
+- Use context selectors to prevent unnecessary re-renders
+- Implement memoization techniques for frequently accessed context values
+- Create dedicated state machines for complex workflows
+- Split large contexts into smaller, more focused ones
+- Provide clear loading and error states in all contexts
+
+## Route Protection Strategies
+
+**ID**: route-protection  
+**Severity**: error  
+
+Implement robust route protection to secure application content.
+
+- Create a `ProtectedRoute` component to wrap private routes
+- Implement role-based access control for feature-specific routes
+- Check authentication status on initial app load before showing content
+- Show loading indicators during authentication state checks
+- Use middleware for server-side route protection
+- Implement feature flags for controlling access to routes in progress
+- Store intended destination for post-login redirects
+- Handle deep linking to protected routes for better user experience
+- Implement permission-based route filtering in navigation components
+- Create fallback UIs when access is denied
+- Log unauthorized access attempts for security monitoring
+- Use progressive enhancement for routes requiring multiple permission levels
+
+## Data Fetching and API
+
+**ID**: data-fetching-api  
+**Severity**: warning  
+
+Data fetching and API communication should be organized and consistent.
+
+- Place API-related code in `lib/` or `services/` directory
+- Group related API calls in service files (e.g., `authService.ts`)
+- Use server components for initial data fetching where possible
+- Implement proper error handling and loading states
+- Use React Query or SWR for client-side data fetching
+- Create dedicated API handlers for complex operations
+- Implement request and response interceptors for common operations
+- Add retry logic for transient failures
+- Create centralized error handling for API responses
+- Generate API types from OpenAPI/Swagger specifications
+- Maintain a consistent authentication header approach
+- Cache appropriate responses to minimize redundant requests
+- Implement optimistic UI updates for improved user experience
+- Use stale-while-revalidate patterns for fast UI rendering
+
+## Advanced Component Patterns
+
+**ID**: advanced-component-patterns  
+**Severity**: warning  
+
+Implement sophisticated component patterns for reusable, flexible UI.
+
+- Use compound components for related UI elements (e.g., Select and Option)
+- Implement controlled vs. uncontrolled component variants
+- Create higher-order components (HOCs) for cross-cutting concerns
+- Use render props for flexible component composition
+- Implement component polymorphism with the "as" prop
+- Create headless UI components that separate logic from presentation
+- Use React portals for elements that escape normal DOM hierarchy
+- Implement component skeletons for loading states
+- Create virtualized components for large data sets
+- Use custom hooks to extract and reuse component logic
+- Implement design system tokens for consistent styling
+- Create component variants with consistent API patterns
+- Use component factories for dynamic component creation
+
+## Utilities and Helpers
+
+**ID**: utilities-helpers  
+**Severity**: info  
+
+Utility functions and helpers should be well-organized and reusable.
+
+- Place utility functions in `lib/utils.ts` or `utils/` directory
+- Create specialized utility files for related functions (e.g., `dateUtils.ts`)
+- Keep utility functions pure and testable
+- Document utility functions with JSDoc comments
+- Export all utilities through barrel files
+- Implement functional programming patterns for data transformations
+- Create event utilities for common browser events
+- Implement form validation helpers
+- Create a consistent error handling system
+- Build localization utilities for internationalization
+- Implement common math and formatting utilities
+- Create security-focused utilities for data sanitization
+- Maintain type safety across all utility functions
+
+## Styles Organization
+
+**ID**: styles-organization  
+**Severity**: info  
+
+Styles should be organized and maintainable.
+
+- Place global styles in `styles/globals.css`
+- Use CSS Modules for component-specific styles (`Component.module.css`)
+- Use Tailwind CSS utility classes for rapid development
+- Maintain consistent styling methodology across the project
+- Use CSS variables for theming and consistent values
+- Consider a design system for larger applications
+- Implement responsive design patterns with breakpoints
+- Create theme providers for dark mode and other theme variations
+- Use naming conventions that reflect component hierarchy
+- Create utility classes for common CSS patterns
+- Implement CSS fallbacks for cross-browser compatibility
+- Optimize CSS for performance and load times
+- Use consistent animation timing and easing functions
+
+## Type Definitions
+
+**ID**: type-definitions  
+**Severity**: warning  
+
+TypeScript type definitions should be clear, organized, and reusable.
+
+- Place shared types in `types/` directory
+- Create domain-specific type files (e.g., `user.types.ts`)
+- Use descriptive interface and type names
+- Define enums for all string literal unions
+- Export types through barrel files
+- Avoid using `any` type
+- Use generics for reusable type patterns
+- Create mapped types for related data structures
+- Define utility types for common type transformations
+- Implement discriminated unions for state management
+- Use branded types for values that need runtime validation
+- Create nominal typing patterns for values with the same structure but different semantics
+- Ensure strict null checking across the codebase
+
+## Testing Structure
+
+**ID**: testing-structure  
+**Severity**: warning  
+
+Tests should be organized and follow a consistent pattern.
+
+- Place tests adjacent to the file being tested with `.test.tsx` or `.spec.tsx` suffix
+- Create test utilities in `test-utils/` directory
+- Use Jest and React Testing Library for component testing
+- Test components in isolation with mocked dependencies
+- Focus tests on user behavior, not implementation details
+- Use Cypress or Playwright for end-to-end testing
+- Place E2E tests in a separate `e2e/` or `cypress/` directory
+- Implement consistent patterns for mocking external dependencies
+- Create dedicated test fixtures and factories
+- Implement snapshot testing judiciously for stable components
+- Test error states and loading conditions
+- Create comprehensive test coverage for critical paths
+- Implement visual regression testing for UI components
+- Use test-driven development for core functionality
+
+## Public Assets
+
+**ID**: public-assets  
+**Severity**: info  
+
+Static assets should be organized and optimized.
+
+- Place all static assets in the `public/` directory
+- Organize assets in subdirectories by type (images, fonts, icons)
+- Optimize images before adding them to the project
+- Use Next.js Image component for optimized image loading
+- Consider using SVG components for icons
+- Implement proper caching strategies for static assets
+- Use WebP format for better compression with fallbacks
+- Create consistent naming conventions for all assets
+- Implement lazy loading for below-the-fold images
+- Use appropriate image dimensions for different viewport sizes
+- Maintain a manifest of all public assets
+- Implement preloading for critical above-the-fold assets
+- Document licensing information for third-party assets
+
+## Configuration Files
+
+**ID**: configuration-files  
+**Severity**: warning  
+
+Configuration files should be properly set up and maintained.
+
+- Keep `next.config.js` clean and documented
+- Organize environment variables in `.env.local`, `.env.development`, etc.
+- Document all environment variables in `.env.example`
+- Configure TypeScript properly in `tsconfig.json`
+- Set up proper linting with `.eslintrc.js`
+- Configure Prettier with `.prettierrc`
+- Implement bundle analysis for performance optimization
+- Configure path aliases for clean imports
+- Set up proper dependency management in `package.json`
+- Implement progressive web app features with proper configuration
+- Configure proper security headers for all environments
+- Document build and deployment configurations
+- Implement automatic performance budgeting
+
+## Next.js API Routes
+
+**ID**: api-routes  
+**Severity**: warning  
+
+API routes should be organized and secure.
+
+- Place API routes in `app/api/` directory
+- Follow RESTful naming conventions
+- Create handler files using `route.ts`
+- Group related API routes in folders
+- Implement proper error handling and validation
+- Implement authentication middleware where needed
+- Document all API endpoints 
+- Create standardized response formats
+- Implement rate limiting for public endpoints
+- Use appropriate HTTP status codes
+- Configure CORS policies for all endpoints
+- Create typed request and response interfaces
+- Implement comprehensive input validation
+- Add logging for debugging and monitoring
+- Create middleware patterns for common operations
+- Implement proper caching headers
+- Use transaction patterns for data consistency 

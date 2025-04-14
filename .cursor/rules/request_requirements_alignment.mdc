@@ -1,0 +1,74 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Request Requirements Alignment
+
+_Rules to ensure API endpoints and request handlers align with formal requirements documentation_
+
+## API Endpoint Alignment
+
+**ID**: api-endpoint-alignment  
+**Severity**: error  
+
+API endpoints must align with specifications in requirements documents
+
+- Each API endpoint must reference its requirement specification
+- URL paths must match those defined in requirements
+- HTTP methods must comply with requirement specifications
+- Query parameters must match requirements documentation
+- Endpoint behavior must implement specified requirements
+
+## Request Validation Alignment
+
+**ID**: request-validation-alignment  
+**Severity**: error  
+
+Request validation must enforce requirements specifications
+
+- Validate all required fields specified in requirements
+- Implement all validation rules from requirements
+- Enforce data types specified in requirements
+- Apply request size limits as defined in requirements
+- Implement rate limiting according to requirements
+
+## Request Schema Conformance
+
+**ID**: request-schema-conformance  
+**Severity**: error  
+
+Request and response structures must conform to schemas defined in requirements
+
+- Request bodies must match schemas defined in requirements
+- Response structures must match documented formats
+- All request/response fields must be documented in requirements
+- Object properties must align with requirement specifications
+- Serialization formats must follow requirements
+
+## Error Handling Requirements
+
+**ID**: error-handling-requirements  
+**Severity**: warning  
+
+Error handling for requests must follow requirements
+
+- Implement all error scenarios specified in requirements
+- Return error codes defined in requirements documentation
+- Provide error messages as specified in requirements
+- Follow error response format from requirements
+- Log errors according to requirements specifications
+
+## Requirements-Based HTTP Client
+
+**ID**: requirements-based-http-client  
+**Severity**: warning  
+
+HTTP client implementations must align with API requirements
+
+- Client request methods must match API endpoint requirements
+- Client code must handle all response types in requirements
+- Authentication methods must follow API requirements
+- Timeout settings must reflect requirements specifications
+- Retry logic must align with requirements
+

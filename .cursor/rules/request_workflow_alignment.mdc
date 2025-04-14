@@ -1,0 +1,177 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Request Workflow Alignment
+
+_Ensures request processing workflows comply with the defined requirements_
+
+## Request State Machine Implementation
+
+**ID**: RWA-001  
+**Severity**: critical  
+
+Request processing must implement the exact state machine defined in requirements
+
+**Reference**: 24_Network_Communication_Requirements.md:Request_Flow:States
+
+**Pattern Type**: semantic  
+**Pattern Query**: class that processes requests but does not implement state transitions as defined in requirements  
+
+**Message**: Request processing must follow the state machine defined in requirements. Implement all required states and transitions.
+
+## Request Workflow Processing Order
+
+**ID**: RWA-002  
+**Severity**: critical  
+
+Request processing steps must be executed in the exact order specified in requirements
+
+**Reference**: 24_Network_Communication_Requirements.md:Request_Flow:Workflow
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that processes requests in a different order than specified in requirements  
+
+**Message**: Request processing must follow the exact order of steps defined in requirements.
+
+## Request Timeout Configuration
+
+**ID**: RWA-003  
+**Severity**: high  
+
+Request processing must implement timeout configurations as specified in requirements
+
+**Reference**: 24_Network_Communication_Requirements.md:Request_Timeouts
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that makes network requests without proper timeout configuration  
+
+**Message**: All requests must implement timeout configurations as specified in requirements.
+
+## Request Retry Policy
+
+**ID**: RWA-004  
+**Severity**: high  
+
+Request processing must implement retry policies as specified in requirements
+
+**Reference**: 24_Network_Communication_Requirements.md:Request_Flow:RetryConditions
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that makes network requests without proper retry policy  
+
+**Message**: All requests must implement retry policies with backoff as specified in requirements.
+
+## Request Exception Handling
+
+**ID**: RWA-005  
+**Severity**: high  
+
+Request processing must implement exception handling as specified in requirements
+
+**Reference**: 24_Network_Communication_Requirements.md:Request_Flow:FailureHandling
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that makes network requests without proper exception handling  
+
+**Message**: All requests must implement exception handling as specified in requirements.
+
+## Request Validation Sequence
+
+**ID**: RWA-006  
+**Severity**: high  
+
+Request validation must follow the exact sequence specified in requirements
+
+**Reference**: 7_Security_Requirements.md:Payment_Processing:ValidationSequence
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that validates requests in a different order than specified in requirements  
+
+**Message**: Request validation must follow the exact sequence of validation steps defined in requirements.
+
+## Request Circuit Breaker Implementation
+
+**ID**: RWA-007  
+**Severity**: high  
+
+External service requests must implement circuit breaker patterns as specified in requirements
+
+**Reference**: 24_Network_Communication_Requirements.md:External_Services:CircuitBreaker
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that makes external service requests without circuit breaker pattern  
+
+**Message**: External service requests must implement circuit breaker patterns as specified in requirements.
+
+## Request Rate Limiting Implementation
+
+**ID**: RWA-008  
+**Severity**: high  
+
+Request processing must implement rate limiting as specified in requirements
+
+**Reference**: 24_Network_Communication_Requirements.md:Request_Flow:RateLimiting
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that processes requests without rate limiting  
+
+**Message**: Request processing must implement rate limiting as specified in requirements.
+
+## Request Logging Requirements
+
+**ID**: RWA-009  
+**Severity**: medium  
+
+Request processing must implement logging as specified in requirements
+
+**Reference**: 10_Operational_Requirements.md:Logging
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that processes requests without proper logging  
+
+**Message**: Request processing must implement logging for all state transitions, errors, and important events as specified in requirements.
+
+## Request Security Headers
+
+**ID**: RWA-010  
+**Severity**: high  
+
+Requests must include security headers as specified in requirements
+
+**Reference**: 7_Security_Requirements.md:API_Security:RequestHeaders
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that makes HTTP requests without required security headers  
+
+**Message**: All HTTP requests must include security headers as specified in requirements.
+
+## Request Response Format
+
+**ID**: RWA-011  
+**Severity**: medium  
+
+Request responses must follow the format specified in requirements
+
+**Reference**: 3_Technical_Requirements.md:API_Design:Responses
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that returns response in a different format than specified in requirements  
+
+**Message**: All request responses must follow the format specified in requirements.
+
+## Request Performance Metrics
+
+**ID**: RWA-012  
+**Severity**: medium  
+
+Request processing must track performance metrics as specified in requirements
+
+**Reference**: 10_Operational_Requirements.md:Performance_Monitoring
+
+**Pattern Type**: semantic  
+**Pattern Query**: method that processes requests without tracking performance metrics  
+
+**Message**: Request processing must track performance metrics as specified in requirements.
+

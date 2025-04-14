@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Documentation Standards
+
+_Rules for code documentation, project documentation, and comment quality_
+
+## Code Documentation
+
+**ID**: code-documentation  
+**Severity**: warning  
+
+Standards for documenting code
+
+- Document all public functions and classes
+- Use JSDoc for JavaScript/TypeScript
+- Use docstrings for Python
+- Update documentation when changing code
+
+## Project Documentation
+
+**ID**: project-documentation  
+**Severity**: warning  
+
+Standards for project-level documentation
+
+- Maintain up-to-date README files for all major components
+- Document architectural decisions in ADRs
+- Keep API documentation synchronized with implementation
+- Use diagrams for visualizing complex systems
+
+## Comment Quality
+
+**ID**: comment-quality  
+**Severity**: info  
+
+Standards for code comments
+
+- Focus comments on why, not what
+- Update comments when changing the related code
+- Remove redundant comments
+- Use TODO comments with issue references for future work
+

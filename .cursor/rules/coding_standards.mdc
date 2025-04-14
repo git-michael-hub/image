@@ -1,0 +1,52 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Coding Standards
+
+_Rules for Python, JavaScript/TypeScript, and general code quality_
+
+## Python Standards
+
+**ID**: python-standards  
+**Severity**: error  
+
+Standards for Python code
+
+- Follow PEP 8 style guidelines
+- Use Type hints for all function parameters and return values
+- Document all functions with docstrings
+- Use Django's Class-Based Views for all view implementations
+- Implement custom mixins for reusable functionality
+
+## JavaScript/TypeScript Standards
+
+**ID**: javascript-typescript-standards  
+**Severity**: error  
+
+Standards for JavaScript and TypeScript code
+
+- TypeScript is required for all JavaScript code (no plain JavaScript files allowed)
+- All React components must be written in TypeScript (.tsx files)
+- All utility functions and modules must be TypeScript (.ts files)
+- Follow Airbnb TypeScript Style Guide
+- Use ESLint with strict TypeScript rules
+- Use TypeScript interfaces or types for all props, state, and data models
+- Enforce strict null checks and strict function types
+- Prefer functional components with hooks over class components
+- Avoid using 'any' type; use proper type definitions instead
+
+## Code Quality Standards
+
+**ID**: code-quality  
+**Severity**: warning  
+
+General code quality standards
+
+- Maintain maximum cyclomatic complexity of 15 per function
+- Keep functions under 50 lines of code
+- Use meaningful variable and function names
+- Include comments for complex logic
+- Remove unused code instead of commenting it out
+

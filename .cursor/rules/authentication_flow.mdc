@@ -1,0 +1,193 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+ # Authentication Flow and Rules
+
+_Standards for authentication, token management, and secure user access_
+
+## Authentication System Overview
+
+**ID**: auth-system-overview  
+**Severity**: info  
+
+Overview of the complete authentication system in the application.
+
+- Uses JWT (JSON Web Token) based authentication with access and refresh tokens
+- Stores tokens in both cookies (for API requests) and localStorage (for state management)
+- Implements token refresh mechanism for expired access tokens
+- Provides comprehensive authentication flows: login, register, forgot password
+- Handles multiple authentication verification points
+- Supports saving and restoring navigation paths after authentication
+
+## Token Management
+
+**ID**: token-management  
+**Severity**: error  
+
+Standards for secure token storage and handling.
+
+- Store tokens in secure, httpOnly cookies with sameSite=strict attribute
+- Store a copy of tokens in localStorage for client-side authentication checks
+- Implement token validation to check expiration before use
+- Refresh access tokens automatically when expired using refresh token
+- Clear all tokens on logout or authentication failure
+- Store minimal user data (id, email) from decoded token claims
+- Never expose tokens in URL parameters or client-side code
+
+## Authentication Verification
+
+**ID**: authentication-verification  
+**Severity**: error  
+
+Multiple layers of authentication verification throughout the application.
+
+- Verify authentication status on application initialization
+- Perform client-side token validation for quick authentication checks
+- Validate with server for critical operations using CHECK_AUTH_URL endpoint
+- Display loading indicators during authentication verification process
+- Handle expired tokens by attempting refresh before redirecting to login
+- Log authentication errors appropriately without exposing sensitive information
+- Clear invalid authentication state to prevent security vulnerabilities
+
+## Authentication Flow
+
+**ID**: authentication-flow  
+**Severity**: error  
+
+Standard authentication flow for users in the application.
+
+- Unauthenticated users can only access public routes and auth pages
+- Authenticated users are redirected from auth pages to dashboard
+- Unauthenticated users are redirected from protected routes to login page
+- Save intended destination when redirecting to login for post-authentication redirect
+- Check authentication on all protected routes before rendering content
+- Display appropriate loading states during authentication checks
+- Handle multiple authentication scenarios: manual login, token-based auto-login
+
+## Login Process
+
+**ID**: login-process  
+**Severity**: error  
+
+Standards for the login process.
+
+- Collect email and password using secure form submission
+- Validate form inputs on both client and server
+- Send credentials to LOGIN_URL using POST method
+- Store received tokens securely in cookies and localStorage
+- Extract and store minimal user data for client-side use
+- Handle login errors with appropriate user feedback
+- Redirect to dashboard or saved redirect path after successful login
+- Support "remember me" functionality for extended sessions
+
+## Registration Process
+
+**ID**: registration-process  
+**Severity**: error  
+
+Standards for user registration.
+
+- Collect required user information with comprehensive validation
+- Validate matching passwords and email format
+- Support optional organization selection if applicable
+- Submit registration data to REGISTER_URL
+- Provide clear error messages for validation failures
+- Handle successful registration with option for email verification
+- Redirect to appropriate page based on registration flow (verify email or login)
+- Support proper security measures (CSRF protection, rate limiting)
+
+## Password Reset Flow
+
+**ID**: password-reset-flow  
+**Severity**: error  
+
+Standards for password reset functionality.
+
+- Provide forgot password form requesting user email
+- Send password reset email with secure token
+- Verify reset token validity before allowing password change
+- Implement strong password requirements
+- Require password confirmation to prevent typos
+- Clear any existing authentication on password reset
+- Redirect to login after successful password reset
+- Handle errors appropriately with user feedback
+
+## Protected Routes Implementation
+
+**ID**: protected-routes-implementation  
+**Severity**: error  
+
+Standards for implementing route protection.
+
+- Use ProtectedRoute component to wrap all secure content
+- Check authentication status before rendering protected content
+- Save current path when redirecting unauthenticated users
+- Display loading indicator during authentication check
+- Prevent flash of protected content during authentication verification
+- Handle deep linking to protected routes appropriately
+- Only render protected content after full authentication verification
+
+## Auth Redirects
+
+**ID**: auth-redirects  
+**Severity**: error  
+
+Standards for authentication-related redirects.
+
+- Authenticated users must be redirected away from auth pages
+- Unauthenticated users must be redirected away from protected pages
+- Store intended destination in sessionStorage for post-login redirect
+- Use AuthRedirect component in auth page layouts
+- Define explicit AUTH_PATHS array for pages requiring redirect
+- Define explicit PROTECTED_PATHS array for pages requiring authentication
+- Handle path preservation across the authentication flow
+
+## Auth Components
+
+**ID**: auth-components  
+**Severity**: warning  
+
+Reusable authentication-related components.
+
+- `AuthRedirect`: Redirects authenticated users away from auth pages
+- `ProtectedRoute`: Protects routes requiring authentication 
+- `LoadingScreen`: Displays authentication verification status
+- Auth forms: Standardized login, register, password reset forms
+- All auth components use the AuthContext for authentication status
+- Components handle loading states appropriately
+- Components provide clear user feedback for errors
+
+## Auth Layout
+
+**ID**: auth-layout  
+**Severity**: warning  
+
+Standards for auth page layouts.
+
+- Apply consistent layout across all authentication pages
+- Display loading indicator during authentication check
+- Prevent content flash by verifying authentication before rendering
+- Include AuthRedirect component to handle redirection
+- Provide clear navigation between auth-related pages (login, register, etc.)
+- Support proper rendering on mobile devices
+- Maintain clean, focused UI for authentication forms
+
+## Authentication Context
+
+**ID**: authentication-context  
+**Severity**: error  
+
+Standards for the authentication context provider.
+
+- Provide application-wide authentication state
+- Include key properties: isAuthenticated, user, loading, error
+- Provide methods: login, register, logout, verifyEmail, clearError
+- Initialize authentication state on application load
+- Update authentication state consistently across operations
+- Handle authentication errors appropriately
+- Support both client-side and server-side validation
+- Maintain clear loading states during asynchronous operations 
+
+

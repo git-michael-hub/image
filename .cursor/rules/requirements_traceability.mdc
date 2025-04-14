@@ -1,0 +1,74 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Requirements Traceability
+
+_Rules to ensure code is aligned with formal requirements documentation_
+
+## Requirement Reference
+
+**ID**: requirement-reference  
+**Severity**: error  
+
+Code must include references to the requirements it implements
+
+- Include requirement ID/reference in code comments using '@requirement' tag
+- Link code to specific sections in requirements documents
+- Document deviation from requirements with justification
+- Update requirement references when code functionality changes
+- Flag orphaned code that doesn't map to any requirement
+
+## Requirements Verification
+
+**ID**: requirements-verification  
+**Severity**: error  
+
+Tests must verify requirements are correctly implemented
+
+- Tests should specifically reference requirements they verify
+- Each functional requirement needs corresponding test(s)
+- Test descriptions should reflect requirement language
+- Use requirement-based test naming conventions
+- Document requirements coverage in test documentation
+
+## Requirements-Based Commits
+
+**ID**: requirements-based-commits  
+**Severity**: warning  
+
+Commit messages should reference requirements
+
+- Include requirement ID in commit message
+- Use format: '[REQ-XXX] Commit message'
+- Reference multiple requirements as needed: '[REQ-XXX][REQ-YYY]'
+- Describe how the commit fulfills the requirement
+- Link to requirement document when applicable
+
+## Implementation Alignment
+
+**ID**: implementation-alignment  
+**Severity**: error  
+
+Code implementation must align with requirement specifications
+
+- Honor API contracts specified in requirements
+- Maintain data models as defined in requirements
+- Use specified algorithms and patterns
+- Implement exact business logic as documented
+- Follow architecture models from requirements
+
+## Requirements Change Impact
+
+**ID**: requirements-change-impact  
+**Severity**: warning  
+
+Track impact of requirement changes on code
+
+- Document affected code when requirements change
+- Update code comments with requirement version references
+- Add '@requirement-update' tag for changed requirements
+- Track version of requirements used for implementation
+- Include change notes for requirement-driven updates
+

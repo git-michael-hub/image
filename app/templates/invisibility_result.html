@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invisibility Cloak Effect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .result-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .image-container {
+            max-width: 48%;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-center {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+        }
+        .tips-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .tips-container h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #9b59b6;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .tip-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .tip-icon {
+            color: #9b59b6;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .summary-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .info-badge {
+            display: inline-block;
+            background-color: #9b59b6;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Invisibility Cloak Effect</h1>
+        <p>Harry Potter's invisibility cloak brought to life with computer vision</p>
+    </div>
+    
+    <div class="summary-box">
+        <div>
+            <span style="font-weight: bold;">Selected Color:</span>
+            <span class="info-badge">{{ color }}</span>
+        </div>
+    </div>
+    
+    <div class="result-container">
+        <div class="image-container">
+            <h3>Original Image</h3>
+            <img src="{{ url_for('static', filename=original) }}" alt="Original Image">
+        </div>
+        
+        <div class="image-container">
+            <h3>Invisibility Effect</h3>
+            <img src="{{ url_for('static', filename=processed) }}" alt="Image with Invisibility Effect">
+        </div>
+    </div>
+    
+    <div class="tips-container">
+        <h3>Tips for Better Results</h3>
+        
+        <div class="tip-item">
+            <div class="tip-icon">💡</div>
+            <div>Use a solid color cloth or object that stands out from the background</div>
+        </div>
+        
+        <div class="tip-item">
+            <div class="tip-icon">💡</div>
+            <div>Ensure good lighting conditions for better color detection</div>
+        </div>
+        
+        <div class="tip-item">
+            <div class="tip-icon">💡</div>
+            <div>Try different colors if the current one doesn't work well</div>
+        </div>
+        
+        <div class="tip-item">
+            <div class="tip-icon">💡</div>
+            <div>Use a clean, static background for the best invisibility effect</div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="{{ url_for('index') }}" class="btn btn-center">Try Another Image</a>
+    </div>
+</body>
+</html> 
